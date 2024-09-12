@@ -1,9 +1,6 @@
 package org.example.expert.domain.todo;
 
 import org.example.expert.client.WeatherClient;
-import org.example.expert.domain.comment.dto.request.CommentSaveRequest;
-import org.example.expert.domain.comment.dto.response.CommentSaveResponse;
-import org.example.expert.domain.comment.entity.Comment;
 import org.example.expert.domain.common.dto.AuthUser;
 import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.todo.dto.request.TodoSaveRequest;
@@ -25,7 +22,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +48,7 @@ public class TodoServiceTest {
         AuthUser authUser = new AuthUser(1L, "test@example.com", UserRole.USER);
         TodoSaveRequest todoSaveRequest = new TodoSaveRequest("title", "contents");
         User user = new User(authUser.getEmail(), "password", UserRole.USER);
-        String weather = "Sunny"; // 가짜 날씨 정보
+        String weather = "Sunny";
         Todo newTodo = new Todo(todoSaveRequest.getTitle(), todoSaveRequest.getContents(), weather, user);
         given(todoRepository.save(any())).willReturn(newTodo);
         Todo savedTodo = todoRepository.save(newTodo);
