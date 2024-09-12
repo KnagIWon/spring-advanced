@@ -20,9 +20,8 @@ public class WebConfig implements WebMvcConfigurer {
         resolvers.add(new AuthUserArgumentResolver());
     }
 
-    private final HttpServletRequest request;
     @Bean
     public AspectPractice getAspectPracticeAop() {
-        return new AspectPractice(request);
+        return new AspectPractice();
     }
 }
