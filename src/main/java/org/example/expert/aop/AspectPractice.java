@@ -23,13 +23,13 @@ public class AspectPractice {
     @Around("trackTimeAnnotation()")
     public Object adviceAnnotation(ProceedingJoinPoint joinPoint) throws Throwable {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpServletRequest request1 = servletRequestAttributes.getRequest();
-        Long userId = (Long)request1.getAttribute("userId");
+        HttpServletRequest request = servletRequestAttributes.getRequest();
+        Long userId = (Long)request.getAttribute("userId");
         LocalDateTime requestTime = LocalDateTime.now(); // 요청 시각
-        StringBuffer requestURL = request1.getRequestURL();
+        StringBuffer requestURL = request.getRequestURL();
         String fullURL = requestURL.toString(); // 요청 URL
 
-        String queryString = request1.getQueryString();
+        String queryString = request.getQueryString();
         if (queryString != null) {
             fullURL += "?" + queryString;
         }
